@@ -11,8 +11,9 @@ class MyWidget(QMainWindow):
         uic.loadUi('main.ui', self)
         res = sqlite3.connect("coffee.sqlite").cursor().execute("""SELECT * FROM coffee""").fetchall()
         self.tableWidget.setRowCount(len(res))
-        self.tableWidget.setColumnCount(5)
-        self.tableWidget.setHorizontalHeaderLabels(['id', 'название', 'обжарка', 'цена в Р.', 'объём в МЛ'])
+        self.tableWidget.setColumnCount(7)
+        self.tableWidget.setHorizontalHeaderLabels(
+            ['id', 'название', 'обжарка', 'молотое/зерна', 'вкус', 'цена в Р.', 'объём в МЛ'])
         for i, row in enumerate(res):
             for j, elem in enumerate(row):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(elem)))
